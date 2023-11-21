@@ -1,6 +1,10 @@
-# @summary A short summary of the purpose of this defined type.
+# @summary Create interface $dev
 #
-# A description of what this defined type does
+# @param type
+# @param dev
+# @param addresses
+# @param flush
+# @param opts
 #
 # @example
 #   netplan::interface { 'namevar': }

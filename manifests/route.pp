@@ -1,6 +1,10 @@
-# @summary A short summary of the purpose of this defined type.
+# @summary Create route for $dev interface
 #
-# A description of what this defined type does
+# @param dev
+# @param to
+# @param via
+# @param type
+# @param opts
 #
 # @example
 #   netplan::route { 'namevar': }

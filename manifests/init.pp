@@ -1,6 +1,11 @@
-# @summary A short summary of the purpose of this class
+# @summary Install Netplan
 #
-# A description of what this class does
+# @param package_name
+# @param package_ensure
+# @param config_file
+# @param replace
+# @param config_version
+# @param config_hash
 #
 # @example
 #   include netplan
