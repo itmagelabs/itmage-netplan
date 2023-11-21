@@ -1,0 +1,2 @@
+---
+netplan::package_name: 'netplan'

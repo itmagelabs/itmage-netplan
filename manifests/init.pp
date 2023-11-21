@@ -5,7 +5,7 @@
 # @example
 #   include netplan
 class netplan (
-  String $package_name = 'netplan.io',
+  String $package_name = 'netplan',
   String $package_ensure = 'present',
   String $config_file = '/etc/netplan/netplan.yaml',
   Boolean $replace = true,

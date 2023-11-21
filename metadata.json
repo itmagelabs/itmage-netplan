@@ -1,12 +1,21 @@
 {
-  "name": "iTmage-netplan",
+  "name": "itmage-netplan",
   "version": "0.1.0",
-  "author": "iTmage",
-  "summary": "",
+  "author": "itmage",
+  "summary": "A Puppet module that installs and configures Netplan.",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/wilful/itmage-netplan",
+  "project_page": "https://github.com/wilful/itmage-netplan",
+  "issues_url": "https://github.com/wilful/itmage-netplan/issues",
   "dependencies": [
-
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.13.1 < 10.0.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 7.4.0 < 9.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
