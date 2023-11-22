@@ -1,9 +1,15 @@
 # @summary Create interface $dev
 #
 # @param type
+#   Type of device
+#
 # @param dev
+#   Device name
+#
 # @param addresses
 # @param flush
+#   Deletes all addresses on the interface before applying the new configuration
+#
 # @param opts
 #
 # @example
