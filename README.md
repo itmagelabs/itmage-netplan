@@ -31,8 +31,8 @@ Then, create resources with a description of the interfaces and routes. For exam
 
 ```puppet
 include netplan
-netplan::interface { 'ens3': addresses => ['192.168.0.1'] }
-netplan::route { 'Added new route for Office net': dev => 'ens3', to => '172.10.0.1', via => '192.168.0.1' }
+netplan::interface { 'ens3': addresses => ['192.168.0.1/24'] }
+netplan::route { 'Added new route for Office net': dev => 'ens3', to => '172.10.0.1/16', via => '192.168.0.1' }
 ```
 
 ## Usage
@@ -51,39 +51,39 @@ netplan::interface { 'ens3':
 Any additional parameters can be added through the $opts key
 
 ```puppet
-  netplan::interface { 'ens3':
-    opts      => {'mtu' => 1500},
-    addresses => ['10.10.0.10/32']
-  }
+netplan::interface { 'ens3':
+  opts      => {'mtu' => 1500},
+  addresses => ['10.10.0.10/32']
+}
 ```
 
 Example of Bond interface configuration
 
 ```puppet
-  netplan::interface { 'bond0':
-    type      => 'bonds',
-    opts      => {
-      'interfaces' => ['ens3', 'ens4'],
-      'parameters' => {
-        'mode'      => '802.3ad',
-        'lacp-rate' => 'fast'
-      }
-    },
-    addresses => ['10.10.0.10/32']
-  }
+netplan::interface { 'bond0':
+  type      => 'bonds',
+  opts      => {
+    'interfaces' => ['ens3', 'ens4'],
+    'parameters' => {
+      'mode'      => '802.3ad',
+      'lacp-rate' => 'fast'
+    }
+  },
+  addresses => ['10.10.0.10/32']
+}
 ```
 
 Similarly, you can build a VLAN interface
 
 ```puppet
-  netplan::interface { 'vlan20':
-    type      => 'vlan',
-    opts      => {
-      'link' => 'bond0',
-      'id'   => 20
-    },
-    addresses => ['10.10.0.10/32']
-  }
+netplan::interface { 'vlan20':
+  type      => 'vlan',
+  opts      => {
+    'link' => 'bond0',
+    'id'   => 20
+  },
+  addresses => ['10.10.0.10/32']
+}
 ```
 
 ## Limitations
