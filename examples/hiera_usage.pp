@@ -28,9 +28,17 @@ class profile::netplan (
   Hash $interfaces = {},
   Hash $routes = {}
 ) {
-  create_resources('netplan::interface', $interfaces, {})
+  $_interfaces = $facts['dc'] ? {
+    /dub|cvt/ => deep_merge($interfaces, {'bond0' => { 'opts' => {'mtu' => 9000}}}),
+    default   => $interfaces
+  }
+  create_resources('netplan::interface', $_interfaces, {})
   case $facts['role'] {
-    /gateway|jumphost/: {create_resources('netplan::route', $routes['gateway'], {})}
+    /gateway|jumphost/: {
+      if has_key(profile::netplan::interfaces, 'bond0') {
+        create_resources('netplan::route', $routes['gateway'], {})
+      }
+    }
     default: {}
   }
 }

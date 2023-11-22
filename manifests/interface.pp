@@ -39,8 +39,9 @@ define netplan::interface (
   }
   if $flush {
     @exec { "Flush all settings on ${dev}":
-      command => "/sbin/ip addr flush dev ${dev}",
-      tag     => ['netplan_flush']
+      command     => "/sbin/ip addr flush dev ${dev}",
+      refreshonly => true,
+      tag         => ['netplan_flush']
     }
   }
 }
