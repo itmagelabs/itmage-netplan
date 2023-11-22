@@ -86,4 +86,9 @@ Similarly, you can build a VLAN interface
 
 ## Limitations
 
+- There are no tests to check the module works
+
 ## Development
+
+- I need help adding snippets for working with different tunnels, such as Wireguard.
+  TODO: Initialize basic wireguard support

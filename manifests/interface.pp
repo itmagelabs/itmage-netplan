@@ -7,7 +7,7 @@
 # @param opts
 #
 # @example
-#   netplan::interface { 'namevar': }
+#   netplan::interface { 'ens3': addresses => ['192.168.0.1'] }
 define netplan::interface (
   String $type = 'ethernets',
   String $dev = $name,

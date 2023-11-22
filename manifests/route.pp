@@ -7,7 +7,7 @@
 # @param opts
 #
 # @example
-#   netplan::route { 'namevar': }
+#   netplan::route { 'Added new route for Office net': dev => 'ens3', to => '172.10.0.1', via => '192.168.0.1' }
 define netplan::route (
   String $dev,
   String $to,

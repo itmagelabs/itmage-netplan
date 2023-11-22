@@ -1,14 +1,21 @@
 # See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
 # for more information on native puppet functions.
 # @param type
-# @return ip
+# @return String
 function core_netplan::get::type(
   String $type
 ) >> String {
   case $type {
+    /wifi|wireless|wifis/: { 'wifis' }
+    /modem|modems/: { 'modems' }
+    /bridge|br|bridges/: { 'bridges' }
+    /vrf|vrfs/: { 'vrfs' }
+    /tunnel|tun|tunnels/: { 'tunnels' }
     /bond|bonding|bonds/: { 'bonds' }
     /vlan|vlans/: { 'vlans' }
     /eth|ethernet|ethernets/: { 'ethernets' }
-    default: { 'ethernets'}
+    default: {
+      fail('Unsupported interface type specified.')
+    }
   }
 }
