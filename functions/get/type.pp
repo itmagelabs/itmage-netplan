@@ -2,7 +2,7 @@
 # for more information on native puppet functions.
 # @param type
 # @return String
-function core_netplan::get::type(
+function netplan::get::type(
   String $type
 ) >> String {
   case $type {
