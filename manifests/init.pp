@@ -1,5 +1,7 @@
 # @summary Install Netplan
 #
+# @param noop
+#   The configuration will be added but not applied
 # @param package_name
 # @param package_ensure
 # @param config_file
@@ -10,6 +12,7 @@
 # @example
 #   include netplan
 class netplan (
+  Boolean $noop = true,
   String $package_name = 'netplan',
   String $package_ensure = 'present',
   String $config_file = '/etc/netplan/netplan.yaml',
@@ -23,6 +26,16 @@ class netplan (
     }
   }
 ) {
+  $warning_message = @("EOL")
+  The module ${name} has been started in NOOP mode.
+  A configuration file will be added. To try the configuration run
+
+  `netplan try --config-file ${config_file}`
+
+  After verification, set the flag
+
+  `netplan::noop: false`
+  | EOL
   include netplan::install
 
   concat { $config_file:
@@ -34,10 +47,12 @@ class netplan (
     target  => $config_file,
     content => to_yaml($config_hash)
   }
-  Exec <| tag == 'netplan_flush' |>
-  -> exec { 'Run netplan apply':
-    command     => '/usr/sbin/netplan apply',
-    refreshonly => true,
-    subscribe   => Concat[$config_file]
-  }
+  unless $noop {
+    Exec <| tag == 'netplan_flush' |>
+    -> exec { 'Run netplan apply':
+      command     => '/usr/sbin/netplan apply',
+      refreshonly => true,
+      subscribe   => Concat[$config_file]
+    }
+  } else { warning($warning_message) }
 }

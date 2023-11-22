@@ -1,6 +1,7 @@
 # TODO
-# netplan_common:
+# profile::netplan::interfaces:
 #   ens3:
+#     flush: true
 #     opts:
 #       match:
 #         name: ens3
@@ -17,17 +18,19 @@
 #       link: bond0
 #       id: 20
 #
-# netplan_gateway_routes:
+# profile::netplan::routes:
+#   gateway:
 #     'Added new route for Office net':
 #       dev: bond0
 #       to: 172.10.0.1/16
 #       via: 192.168.0.1
-class profile::netplan {
-  $interfaces = lookup('netplan_common', undef, undef, {})
-  $routes = lookup('netplan_gateway_routes', undef, undef, {})
-
+class profile::netplan (
+  Hash $interfaces = {},
+  Hash $routes = {}
+) {
   create_resources('netplan::interface', $interfaces, {})
-  if $facts['role'] in ['gateway'] {
-    create_resources('netplan::route', $routes, {})
+  case $facts['role'] {
+    /gateway|jumphost/: {create_resources('netplan::route', $routes['gateway'], {})}
+    default: {}
   }
 }
