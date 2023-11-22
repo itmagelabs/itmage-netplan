@@ -140,7 +140,7 @@ The following parameters are available in the `netplan::interface` defined type:
 
 Data type: `String`
 
-
+Type of device
 
 Default value: `'ethernets'`
 
@@ -148,7 +148,7 @@ Default value: `'ethernets'`
 
 Data type: `String`
 
-
+Device name
 
 Default value: `$name`
 
@@ -164,7 +164,7 @@ Default value: `[]`
 
 Data type: `Boolean`
 
-
+Deletes all addresses on the interface before applying the new configuration
 
 Default value: `false`
 
