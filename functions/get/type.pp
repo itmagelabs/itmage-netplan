@@ -6,6 +6,8 @@ function core_netplan::get::type(
   String $type
 ) >> String {
   case $type {
+    /dummy|dummy-devices/: { 'dummy-devices' }
+    /virtual|virt|virtual-ethernets/: { 'virtual-ethernets' }
     /wifi|wireless|wifis/: { 'wifis' }
     /modem|modems/: { 'modems' }
     /bridge|br|bridges/: { 'bridges' }
