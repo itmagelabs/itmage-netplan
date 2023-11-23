@@ -4,9 +4,9 @@
   "author": "itmage",
   "summary": "A Puppet module that installs and configures Netplan.",
   "license": "Apache-2.0",
-  "source": "https://github.com/wilful/itmage-netplan",
-  "project_page": "https://github.com/wilful/itmage-netplan",
-  "issues_url": "https://github.com/wilful/itmage-netplan/issues",
+  "source": "https://github.com/itmagelabs/itmage-netplan",
+  "project_page": "https://github.com/itmagelabs/itmage-netplan",
+  "issues_url": "https://github.com/itmagelabs/itmage-netplan/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
